@@ -126,16 +126,17 @@ Après configuration du port forwarding, l'accès initial à Passbolt échouait 
 ping 10.0.1.10   → OK (PFsense LAN)
 ping 10.0.1.1    → OK (AdGuard)
 ping 10.0.1.2    → OK (Passbolt)
-
-<img width="892" height="945" alt="image" src="https://github.com/user-attachments/assets/f889fcd2-5359-4c9a-8327-67fa5306b0b1" />
-
 ```
-
+<img width="892" height="945" alt="image" src="https://github.com/user-attachments/assets/f889fcd2-5359-4c9a-8327-67fa5306b0b1" />
 
 
 **Accès aux services depuis le PC hôte (via NAT PFsense) :**
 - `http://192.168.1.3:4444` → interface AdGuard Home
+  <img width="884" height="945" alt="image" src="https://github.com/user-attachments/assets/658fcf89-dd8b-4635-ab0e-9c9bfc943780" />
+
 - `http://192.168.1.3:5555` → interface Passbolt
+<img width="888" height="945" alt="image" src="https://github.com/user-attachments/assets/8b788382-d88c-497c-82c0-ea74b0af54fd" />
+
 
 ## 📋 Tableau récapitulatif des adresses IP
 
