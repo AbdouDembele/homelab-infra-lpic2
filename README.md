@@ -63,7 +63,13 @@ Le LAN `10.0.1.0/16` n'est **pas routable directement** depuis le PC hôte : tou
   <img width="1522" height="595" alt="image" src="https://github.com/user-attachments/assets/761db3c8-d490-4e02-86fb-6ca34a6ddfde" />
 
 - Installation CE, assignation des interfaces WAN/LAN
+- <img width="1459" height="593" alt="image" src="https://github.com/user-attachments/assets/80783f5b-ec47-4ac3-8af4-2bfd4f8ae472" />
+<img width="1459" height="701" alt="image" src="https://github.com/user-attachments/assets/11d60748-8b10-4799-a3a5-6a924514101c" />
+
 - Création d'une règle firewall (`easyrule`) pour débloquer l'accès à l'interface d'administration WAN
+<img width="1459" height="829" alt="image" src="https://github.com/user-attachments/assets/f31cdb4b-24ea-4dac-b161-e1fda5fe7e45" />
+
+<img width="1459" height="574" alt="image" src="https://github.com/user-attachments/assets/cacd2370-8caa-4499-83fe-3650623a4136" />
 
 ### 3. Déploiement d'AdGuard Home
 - Conteneur LXC Debian 12, avec accès temporaire au WAN (pour l'installation) puis restreint au LAN
