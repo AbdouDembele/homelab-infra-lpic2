@@ -73,22 +73,51 @@ Le LAN `10.0.1.0/16` n'est **pas routable directement** depuis le PC hôte : tou
 
 ### 3. Déploiement d'AdGuard Home
 - Conteneur LXC Debian 12, avec accès temporaire au WAN (pour l'installation) puis restreint au LAN
+- <img width="1236" height="916" alt="image" src="https://github.com/user-attachments/assets/0220c85c-7501-437e-9d05-67964fe82233" />
+<img width="1127" height="859" alt="image" src="https://github.com/user-attachments/assets/bce71951-ec4e-4d54-8449-9c7a0d7d6491" />
+  
 - Installation via le script officiel AdGuard Home
 - Configuration de l'interface web et du serveur DNS sur `10.0.1.1`
+  <img width="1008" height="945" alt="image" src="https://github.com/user-attachments/assets/8bce5650-84c2-4d17-b861-74d105037806" />
+
 - Mise en place d'une règle **NAT port forwarding** sur PFsense (`WAN:4444` → `10.0.1.1:80`) pour l'administration à distance
+<img width="1063" height="292" alt="image" src="https://github.com/user-attachments/assets/74ace073-6982-4fb4-a180-3553188be910" />
+<img width="1459" height="778" alt="image" src="https://github.com/user-attachments/assets/c2cab920-5374-44dc-bc1e-30191a621375" />
+<img width="1459" height="876" alt="image" src="https://github.com/user-attachments/assets/bb9ec3b4-b677-47da-a1f8-0058b4068596" />
+
+<img width="1459" height="568" alt="image" src="https://github.com/user-attachments/assets/f07daacb-8ab3-44d2-8c91-ff9f2e6825a7" />
+
+
+
 
 ### 4. Déploiement de Passbolt
 - Conteneur LXC Debian 12 dédié, IP `10.0.1.2`
+<img width="1459" height="876" alt="image" src="https://github.com/user-attachments/assets/4b72a1c3-4fc9-4839-b3be-d41e1b81f76e" />
+
 - Installation via le script officiel Passbolt (base MariaDB, clé serveur)
+  <img width="1459" height="549" alt="image" src="https://github.com/user-attachments/assets/dffb34ab-4d6b-43d0-8dbe-346c0afbf232" />
+<img width="1459" height="727" alt="image" src="https://github.com/user-attachments/assets/7db18260-d2e3-4fa9-a36a-207bfb03b793" />
+
 - Règle NAT équivalente (`WAN:5555` → `10.0.1.2:80`)
+  <img width="1226" height="945" alt="image" src="https://github.com/user-attachments/assets/e8c9a58b-9c7e-4534-93c1-c95554195f60" />
+
 
 ## 🐛 Problème rencontré & résolution
 
 Après configuration du port forwarding, l'accès initial à Passbolt échouait : le navigateur tentait de charger les ressources statiques (JS, favicon) directement depuis `http://10.0.1.2/...`, une IP non joignable depuis le PC hôte car située derrière le NAT de PFsense.
 
+<img width="1459" height="356" alt="image" src="https://github.com/user-attachments/assets/b942cbf2-32be-4c4f-9f52-c01e46934208" />
+
+
 **Cause** : le paramètre `fullBaseUrl` dans `/etc/passbolt/passbolt.php` pointait vers l'IP interne du conteneur au lieu de l'adresse publique utilisée pour y accéder.
 
 **Solution** : modification de `fullBaseUrl` pour utiliser `http://192.168.1.3:5555` (IP + port exposés côté PFsense), ce qui a permis à toutes les ressources de se charger correctement.
+
+<img width="1459" height="586" alt="image" src="https://github.com/user-attachments/assets/339a9bd4-a557-49f2-a36b-1afc0ef71708" />
+
+
+<img width="1459" height="571" alt="image" src="https://github.com/user-attachments/assets/251bd38a-4e5e-4047-9aca-49119e603d85" />
+
 
 ## ✅ Tests de validation
 
@@ -97,7 +126,12 @@ Après configuration du port forwarding, l'accès initial à Passbolt échouait 
 ping 10.0.1.10   → OK (PFsense LAN)
 ping 10.0.1.1    → OK (AdGuard)
 ping 10.0.1.2    → OK (Passbolt)
+
+<img width="892" height="945" alt="image" src="https://github.com/user-attachments/assets/f889fcd2-5359-4c9a-8327-67fa5306b0b1" />
+
 ```
+
+
 
 **Accès aux services depuis le PC hôte (via NAT PFsense) :**
 - `http://192.168.1.3:4444` → interface AdGuard Home
