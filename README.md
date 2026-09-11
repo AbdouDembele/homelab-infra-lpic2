@@ -148,9 +148,6 @@ ping 10.0.1.2    → OK (Passbolt)
 | AdGuard Home | — | 10.0.1.1 |
 | Passbolt | — | 10.0.1.2 |
 
-## 📸 Captures d'écran
-
-Les captures détaillées de chaque étape (installation, configuration, tests) sont disponibles dans le dossier [`docs/screenshots/`](./docs/screenshots).
 
 ## 🔧 Compétences mises en pratique
 
