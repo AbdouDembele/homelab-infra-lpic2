@@ -60,6 +60,8 @@ Le LAN `10.0.1.0/16` n'est **pas routable directement** depuis le PC hôte : tou
 
 ### 2. Déploiement de PFsense
 - Création d'une VM avec l'ISO PFsense, deux cartes réseau (WAN sur `vmbr0`, LAN sur `vmbr2`)
+  <img width="1522" height="595" alt="image" src="https://github.com/user-attachments/assets/761db3c8-d490-4e02-86fb-6ca34a6ddfde" />
+
 - Installation CE, assignation des interfaces WAN/LAN
 - Création d'une règle firewall (`easyrule`) pour débloquer l'accès à l'interface d'administration WAN
 
